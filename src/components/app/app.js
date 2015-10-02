@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import DataTable from '../datatable/datatable';
+import Loader from '../loader/loader';
 import MenuPanel from '../menupanel/menupanel';
 
 export default class App extends React.Component {
@@ -11,7 +12,7 @@ export default class App extends React.Component {
   state = {
     path: '/',
     stats: [],
-    loading: true
+    loading: false
   };
 
   _getStats = () => {
@@ -37,6 +38,9 @@ export default class App extends React.Component {
 
   _menuClick = (type) => {
     if (type === 'Stats') {
+      this.setState({
+        loading: true
+      });
       this._getStats();
     } else if (type === 'Teams') {
       this._showTeams();
@@ -68,6 +72,7 @@ export default class App extends React.Component {
         <div className='right panel'>
           {rightPanel}
         </div>
+        <Loader show={this.state.loading}></Loader>
       </div>
     );
   };
