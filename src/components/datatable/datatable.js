@@ -8,7 +8,7 @@ export default class DataTable extends React.Component {
 
     if (data.length === 0) {
       return (
-        <p>Loading...</p>
+        <p></p>
       );
     }
 
@@ -42,8 +42,9 @@ export default class DataTable extends React.Component {
 
     return (
       <div>
-        <table>
-          {rows}
+        <table className='stats-table'>
+          <thead></thead>
+          <tbody>{rows}</tbody>
         </table>
       </div>
     );

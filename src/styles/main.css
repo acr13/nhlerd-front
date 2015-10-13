@@ -139,6 +139,23 @@ a:active, a:hover {
   background-color: #434857;
 }
 
+/* Table */
+.stats-table {
+
+}
+
+.stats-table >  {
+
+}
+
+.stats-table > tbody >  tr > td {
+  padding: 8px;
+  line-height: 1.5;
+  vertical-align: top;
+  border-top: 1px solid #434857;
+}
+
+/* Loader */
 .sk-circle {
   margin: 40px auto;
   width: 40px;

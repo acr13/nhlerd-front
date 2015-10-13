@@ -4,6 +4,7 @@ import axios from 'axios';
 import DataTable from '../datatable/datatable';
 import Loader from '../loader/loader';
 import MenuPanel from '../menupanel/menupanel';
+import {TEAM_LIST} from '../menupanel/team-list';
 
 export default class App extends React.Component {
 
@@ -28,33 +29,37 @@ export default class App extends React.Component {
       });
   };
 
-  _showTeams = () => {
+  _loader = () => {
     this.setState({
-      path: '/teams',
+      path: '',
       stats: [],
-      loading: false
+      loading: true
     });
-  }
+  };
+
+  _showTeams = (teamShortForm) => {
+    axios.get(this.baseUrl + 'stats/team/' + teamShortForm)
+      .then((resp) => {
+        this.setState({
+          path: teamShortForm,
+          stats: resp.data.data,
+          loading: false
+        });
+      });
+  };
 
   _menuClick = (type) => {
     if (type === 'Stats') {
-      this.setState({
-        loading: true
-      });
+      this._loader();
       this._getStats();
-    } else if (type === 'Teams') {
-      this._showTeams();
+    } else if (TEAM_LIST.filter( (team) => { return team.shortForm === type;} ).length > 0) {
+      this._loader();
+      this._showTeams(type);
     }
   };
 
   render() {
     var { path, stats } = this.state;
-
-    if (path === '/stats') {
-      var rightPanel = (
-        <DataTable data={stats}></DataTable>
-      );
-    }
 
     return (
       <div className='wrapper'>
@@ -70,7 +75,7 @@ export default class App extends React.Component {
 
 
         <div className='right panel'>
-          {rightPanel}
+          <DataTable data={stats}></DataTable>
         </div>
         <Loader show={this.state.loading}></Loader>
       </div>
