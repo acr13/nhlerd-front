@@ -2,8 +2,11 @@ import React from 'react';
 import axios from 'axios';
 
 import DataTable from '../datatable/datatable';
-import Loader from '../loader/loader';
+import GameTable from '../gametable/gametable';
 import MenuPanel from '../menupanel/menupanel';
+
+import Loader from '../loader/loader';
+
 import {TEAM_LIST} from '../menupanel/team-list';
 
 export default class App extends React.Component {
@@ -11,55 +14,91 @@ export default class App extends React.Component {
   baseUrl = 'https://guarded-escarpment-1147.herokuapp.com/api/v1/';
 
   state = {
-    path: '/',
+    path: '',
     stats: [],
-    loading: false
+    loading: true
+  };
+
+  componentWillMount = () => {
+    this._showLoader();
+    this._getTonightsMatchups();
+  };
+
+  _getTonightsMatchups = () => {
+    axios.get(this.baseUrl + 'games')
+      .then((resp) => {
+        this.setState({
+          path: '/games',
+          stats: [],
+          games: resp.data,
+          loading: false
+        });
+        console.log(resp);
+      });
   };
 
   _getStats = () => {
     axios.get(this.baseUrl + 'stats')
       .then((resp) => {
-
         this.setState({
           path: '/stats',
           stats: resp.data.data,
+          games: [],
           loading: false
         });
-
       });
   };
 
-  _loader = () => {
-    this.setState({
-      path: '',
-      stats: [],
-      loading: true
-    });
-  };
-
-  _showTeams = (teamShortForm) => {
+  _showTeamStats = (teamShortForm) => {
     axios.get(this.baseUrl + 'stats/team/' + teamShortForm)
       .then((resp) => {
         this.setState({
           path: teamShortForm,
           stats: resp.data.data,
+          games: [],
           loading: false
         });
       });
   };
 
+  _showLoader = () => {
+    this.setState({
+      path: '',
+      stats: [],
+      games: [],
+      loading: true
+    });
+  };
+
   _menuClick = (type) => {
-    if (type === 'Stats') {
-      this._loader();
+    if (type === 'Games') {
+      this._showLoader();
+      this._getTonightsMatchups();
+    } else if (type === 'Stats') {
+      this._showLoader();
       this._getStats();
-    } else if (TEAM_LIST.filter( (team) => { return team.shortForm === type;} ).length > 0) {
-      this._loader();
-      this._showTeams(type);
+    } else if (this._teamIsSelected(type)) {
+      // if any team is clicked (only 1..) then show the team stats
+      this._showLoader();
+      this._showTeamStats(type);
     }
   };
 
+  _teamIsSelected = (type) => {
+    return TEAM_LIST.filter( (team) => { return team.shortForm === type;} ).length > 0;
+  };
+
   render() {
-    var { path, stats } = this.state;
+    var { path, games, stats } = this.state;
+
+    var rightPanel = <div></div>
+
+    if (path === '/games') {
+      rightPanel = <GameTable data={games}></GameTable>
+    }
+    else if (path === '/stats' || this._teamIsSelected(path)) {
+      rightPanel = <DataTable data={stats}></DataTable>
+    }
 
     return (
       <div className='wrapper'>
@@ -73,10 +112,10 @@ export default class App extends React.Component {
           </MenuPanel>
         </div>
 
-
         <div className='right panel'>
-          <DataTable data={stats}></DataTable>
+          {rightPanel}
         </div>
+
         <Loader show={this.state.loading}></Loader>
       </div>
     );

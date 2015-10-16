@@ -7,10 +7,13 @@ import {TEAM_LIST} from './team-list';
 export default class MenuPanel extends React.Component {
 
   render() {
-
     var { selectedMenu } = this.props;
 
     var menuOpts = [
+      {
+        value: 'Games',
+        path: '/games'
+      },
       {
         value: 'Stats',
         path: '/stats'
