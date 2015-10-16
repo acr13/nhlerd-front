@@ -101,7 +101,7 @@ export const TEAM_LIST = [
   },
   {
     label: 'Tampa Bay Lightning',
-    shortForm: ''
+    shortForm: 'TBL'
   },
   {
     label: 'Toronto Maple Leafs',
