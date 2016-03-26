@@ -1,43 +1,45 @@
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 
-var sassLoaders = [
-  'css-loader',
-  'autoprefixer-loader?browsers=last 2 version',
-  'sass-loader?includePaths[]=' + path.resolve(__dirname, './src'),
-];
+function getEntrySources(sources) {
+  if (process.env.NODE_ENV !== 'production') {
+    sources.push('webpack-dev-server/client?http://localhost:8080');
+    sources.push('webpack/hot/only-dev-server');
+  }
+
+  return sources;
+}
 
 module.exports = {
-  devtool: 'eval',
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/dev-server',
-    './src/index'
-  ],
+  devtool: process.env.NODE_ENV !== 'production' ? 'eval-source-map' : '',
+  entry: {
+    bundle: getEntrySources([
+      './src/index.js'
+    ])
+  },
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: 'http://localhost:8080/',
+    filename: 'dist/[name].js'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.DefinePlugin({
+      __DEV__: process.env.NODE_ENV !== 'production',
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    })
   ],
-  resolve: {
-    extensions: ['', '.js']
-  },
   module: {
+    preLoaders: [{
+      test: /\.js$/,
+      loader: 'source-map-loader'
+    }],
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loader: 'react-hot!babel!eslint-loader',
       exclude: /node_modules/
     }, {
-      // HTML LOADER
-      // Reference: https://github.com/webpack/raw-loader
-      // Allow loading html through js
-      test: /\.html$/,
-      loader: 'raw'
+      test: /\.(png|jpg|jpeg|gif|svg)$/,
+      loader: 'url-loader?prefix=img/&limit=53248'
     }]
-  }
+  },
+  postcss: [autoprefixer({ browsers: ['last 2 versions'] })]
 };
