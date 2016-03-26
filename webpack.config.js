@@ -37,6 +37,9 @@ module.exports = {
       loader: 'react-hot!babel!eslint-loader',
       exclude: /node_modules/
     }, {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader!postcss-loader!cssnext-loader'
+    }, {
       test: /\.(png|jpg|jpeg|gif|svg)$/,
       loader: 'url-loader?prefix=img/&limit=53248'
     }]

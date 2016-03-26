@@ -5,8 +5,6 @@ export default class DataTable extends React.Component {
   render() {
     const { data } = this.props;
 
-    console.log(data);
-
     const rows = data.map((row) => {
       return (
         <div>
