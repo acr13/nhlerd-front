@@ -20,8 +20,9 @@ function mapDispatchToProps() {
 }
 
 const mainStyle = {
-  background: 'grey',
-  flexGrow: 1
+  maxWidth: '64em',
+  marginLeft: 'auto',
+  marginRight: 'auto'
 };
 
 class Router extends Component {

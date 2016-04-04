@@ -17,7 +17,10 @@ function mapDispatchToProps() {
 }
 
 const nav = {
-  width: '100px'
+  backgroundColor: '#FFFFFF',
+  minHeight: '32px',
+  padding: '24px',
+  borderBottom: '1px solid #BDC3C7'
 };
 
 

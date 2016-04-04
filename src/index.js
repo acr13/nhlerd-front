@@ -36,14 +36,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 const store = compose(applyMiddleware(...middlewares))(createStore)(rootReducer);
 
-const container = {
-  height: '100%',
-  display: 'flex'
-};
-
 ReactDOM.render(
   <Provider store={store}>
-    <div style={container}>
+    <div>
       <MenuBar />
       <Router />
     </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {getPlayerStats} from '../reducers/stats.js';
+import { getPlayerStats } from '../reducers/stats.js';
+import StatsTable from '../components/tables/StatsTable.js';
 
 function mapStateToProps(state) {
   return {
@@ -16,7 +17,13 @@ function mapDispatchToProps(dispatch) {
 }
 
 const wrapperStyle = {
-  padding: '4rem'
+  backgroundColor: '#FFFFFF',
+  borderRadius: '3px',
+  boxShadow: '0px 2px 4px #4A4A4A',
+  borderTop: '3px solid #3498DB',
+  padding: '1rem',
+  marginBottom: '2rem',
+  marginTop: '2rem'
 };
 
 export class PlayerStats extends React.Component {
@@ -31,7 +38,11 @@ export class PlayerStats extends React.Component {
 
     return (
       <div style={wrapperStyle}>
-        <p>{'Stats'}</p>
+
+        <div className="card">
+          <StatsTable stats={stats} />
+        </div>
+
       </div>
     );
   }
