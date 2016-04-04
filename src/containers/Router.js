@@ -19,6 +19,11 @@ function mapDispatchToProps() {
   return {};
 }
 
+const mainStyle = {
+  background: 'grey',
+  flexGrow: 1
+};
+
 class Router extends Component {
 
   render() {
@@ -32,11 +37,11 @@ class Router extends Component {
         break;
 
       default:
-        currentRoute = 'table';
+        currentRoute = <PlayerStats />;
     }
 
     return (
-      <div>
+      <div style={mainStyle}>
         <LoadingOverlay loading={isLoading} />
         {currentRoute}
       </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {getPlayerStats} from '../reducers/stats.js';
-import DataTable from '../components/datatable/DataTable';
 
 function mapStateToProps(state) {
   return {
@@ -16,6 +15,10 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+const wrapperStyle = {
+  padding: '4rem'
+};
+
 export class PlayerStats extends React.Component {
 
   componentDidMount() {
@@ -27,8 +30,8 @@ export class PlayerStats extends React.Component {
     const { stats } = this.props;
 
     return (
-      <div>
-        <DataTable data={stats} />
+      <div style={wrapperStyle}>
+        <p>{'Stats'}</p>
       </div>
     );
   }

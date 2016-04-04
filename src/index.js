@@ -1,3 +1,5 @@
+import './styles/styles.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -6,6 +8,7 @@ import { Iterable } from 'immutable';
 import thunk from 'redux-thunk';
 
 import rootReducer from './reducers/index.js';
+import MenuBar from './containers/MenuBar.js';
 import Router from './containers/Router.js';
 import promiseMiddleware from './middleware/promiseMiddleware.js';
 
@@ -33,9 +36,17 @@ if (process.env.NODE_ENV !== 'production') {
 
 const store = compose(applyMiddleware(...middlewares))(createStore)(rootReducer);
 
+const container = {
+  height: '100%',
+  display: 'flex'
+};
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router />
+    <div style={container}>
+      <MenuBar />
+      <Router />
+    </div>
   </Provider>,
   document.getElementById('app')
 );
