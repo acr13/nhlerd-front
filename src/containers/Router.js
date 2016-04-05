@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
 /* Routes */
-import { HOME_ROUTE } from '../reducers/router.js';
+import { ENHANCED_ROUTE, HOME_ROUTE } from '../reducers/router.js';
 
 /* Containers */
 import LoadingOverlay from '../components/overlays/loading/loading.js';
@@ -35,6 +35,10 @@ class Router extends Component {
     switch (route) {
       case HOME_ROUTE:
         currentRoute = <PlayerStats />;
+        break;
+
+      case ENHANCED_ROUTE:
+        currentRoute = <div>{'enhanced'}</div>;
         break;
 
       default:

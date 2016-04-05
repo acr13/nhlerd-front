@@ -7,7 +7,7 @@ export default class StatsTable extends React.Component {
 
     const rows = stats.slice(0, 30).map((player) => {
       return (
-        <tr>
+        <tr key={player.get('_id')}>
           <td>{player.get('playerName')}</td>
           <td>{player.get('playerTeamsPlayedFor')}</td>
           <td>{player.get('playerPositionCode')}</td>
@@ -34,7 +34,9 @@ export default class StatsTable extends React.Component {
           <td>{'+/-'}</td>
           <td>{'PIM'}</td>
         </tr>
-        {rows}
+        <tbody>
+          {rows}
+        </tbody>
       </table>
     );
 
