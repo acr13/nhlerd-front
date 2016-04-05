@@ -39,8 +39,10 @@ class MenuBar extends Component {
     const { onRouteChange, route } = this.props;
 
     const routes = ROUTES.map((r) => {
+      let selected = route === r.route ? 'selected-route' : '';
+
       return (
-        <div
+        <div className={selected}
             onClick={() => {
               onRouteChange(r.route);
             }}

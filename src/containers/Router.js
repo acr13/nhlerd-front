@@ -7,6 +7,7 @@ import { ENHANCED_ROUTE, HOME_ROUTE } from '../reducers/router.js';
 /* Containers */
 import LoadingOverlay from '../components/overlays/loading/loading.js';
 import PlayerStats from './PlayerStats.js';
+import EnhStats from './EnhStats.js';
 
 function mapStateToProps(state) {
   return {
@@ -38,7 +39,7 @@ class Router extends Component {
         break;
 
       case ENHANCED_ROUTE:
-        currentRoute = <div>{'enhanced'}</div>;
+        currentRoute = <EnhStats />;
         break;
 
       default:

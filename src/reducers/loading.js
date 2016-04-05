@@ -5,6 +5,10 @@ const REQUEST_PLAYER_STATS = 'REQUEST_PLAYER_STATS';
 const RESOLVE_REQUEST_PLAYER_STATS = 'RESOLVE_REQUEST_PLAYER_STATS';
 const REJECT_REQUEST_PLAYER_STATS = 'REJECT_REQUEST_PLAYER_STATS';
 
+const REQUEST_PLAYER_ENH_STATS = 'REQUEST_PLAYER_ENH_STATS';
+const RESOLVE_REQUEST_PLAYER_ENH_STATS = 'RESOLVE_REQUEST_PLAYER_ENH_STATS';
+const REJECT_REQUEST_PLAYER_ENH_STATS = 'REJECT_REQUEST_PLAYER_ENH_STATS';
+
 /* Reducer */
 
 const INITIAL_STATE = fromJS({
@@ -25,6 +29,21 @@ function loadingReducer(state = INITIAL_STATE, action = {}) {
       }));
 
     case REJECT_REQUEST_PLAYER_STATS:
+      return state.merge(fromJS({
+        loading: false
+      }));
+
+    case REQUEST_PLAYER_ENH_STATS:
+      return state.merge(fromJS({
+        loading: true
+      }));
+
+    case RESOLVE_REQUEST_PLAYER_ENH_STATS:
+      return state.merge(fromJS({
+        loading: false
+      }));
+
+    case REJECT_REQUEST_PLAYER_ENH_STATS:
       return state.merge(fromJS({
         loading: false
       }));

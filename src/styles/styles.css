@@ -8,3 +8,7 @@ html, body, #app {
 td {
   padding: 10px 8px;
 }
+
+.selected-route {
+  background-color: grey;
+}
