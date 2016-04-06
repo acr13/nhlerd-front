@@ -3,10 +3,12 @@ import { fromJS } from 'immutable';
 /* Constants */
 export const HOME_ROUTE = 'home';
 export const ENHANCED_ROUTE = 'enh';
+export const GAMES_ROUTE = 'games';
 
 const ROUTES = [
   HOME_ROUTE,
-  ENHANCED_ROUTE
+  ENHANCED_ROUTE,
+  GAMES_ROUTE
 ];
 
 // Members

@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
 /* Routes */
-import { changeRoute, ENHANCED_ROUTE, HOME_ROUTE } from '../reducers/router.js';
+import { changeRoute, ENHANCED_ROUTE, HOME_ROUTE, GAMES_ROUTE } from '../reducers/router.js';
 
 /* Containers */
 
@@ -18,14 +18,29 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const nav = {
+const navStyle = {
   backgroundColor: '#FFFFFF',
   minHeight: '32px',
   padding: '24px',
-  borderBottom: '1px solid #BDC3C7'
+  borderBottom: '1px solid #BDC3C7',
+  display: 'flex'
+};
+
+const logoStyle = {
+  width: '6rem',
+  marginRight: '20px'
+};
+
+const routeStyle = {
+  cursor: 'pointer',
+  marginRight: '10px',
+  height: '16px'
 };
 
 const ROUTES = [{
+  label: 'Games',
+  route: GAMES_ROUTE
+}, {
   label: 'Stats',
   route: HOME_ROUTE
 }, {
@@ -46,6 +61,7 @@ class MenuBar extends Component {
             onClick={() => {
               onRouteChange(r.route);
             }}
+            style={routeStyle}
         >
           {r.label}
         </div>
@@ -53,7 +69,8 @@ class MenuBar extends Component {
     });
 
     return (
-      <div style={nav}>
+      <div style={navStyle}>
+        <div style={logoStyle}>{'NHLerd'}</div>
         {routes}
       </div>
     );

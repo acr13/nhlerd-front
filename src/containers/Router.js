@@ -2,12 +2,13 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
 /* Routes */
-import { ENHANCED_ROUTE, HOME_ROUTE } from '../reducers/router.js';
+import { ENHANCED_ROUTE, HOME_ROUTE, GAMES_ROUTE } from '../reducers/router.js';
 
 /* Containers */
 import LoadingOverlay from '../components/overlays/loading/loading.js';
 import PlayerStats from './PlayerStats.js';
 import EnhStats from './EnhStats.js';
+import Games from './Games.js';
 
 function mapStateToProps(state) {
   return {
@@ -40,6 +41,10 @@ class Router extends Component {
 
       case ENHANCED_ROUTE:
         currentRoute = <EnhStats />;
+        break;
+
+      case GAMES_ROUTE:
+        currentRoute = <Games />;
         break;
 
       default:

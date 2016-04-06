@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 
+import games from './games.js';
 import loading from './loading.js';
-import stats from './stats.js';
 import router from './router.js';
+import stats from './stats.js';
 
 const rootReducer = combineReducers({
+  games,
   loading,
-  stats,
-  router
+  router,
+  stats
 });
 
 export default rootReducer;

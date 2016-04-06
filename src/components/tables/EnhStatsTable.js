@@ -15,7 +15,7 @@ export default class StatsTable extends React.Component {
           <td>{player.get('shotAttemptsFor')}</td>
           <td>{player.get('shotAttemptsAgainst')}</td>
           <td>{player.get('shotAttempts')}</td>
-          <td>{player.get('shotAttemptsRelPctg')}</td>
+          <td>{player.get('shotAttemptsRelPctg') * 100}</td>
           <td>{player.get('shotAttemptsRelPer60Minutes')}</td>
         </tr>
       );

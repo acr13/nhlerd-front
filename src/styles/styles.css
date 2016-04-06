@@ -10,5 +10,5 @@ td {
 }
 
 .selected-route {
-  background-color: grey;
+  border-bottom: 3px solid #3498DB
 }
