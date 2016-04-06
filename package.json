@@ -8,8 +8,7 @@
   "scripts": {
     "test": "echo \"GFY\" && exit 0",
     "clean": "rm -rf dist",
-    "dev": "webpack-dev-server --hot --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --hot --progress"
   },
   "author": "",
   "license": "MIT",
