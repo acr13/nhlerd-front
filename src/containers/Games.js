@@ -3,7 +3,6 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 
 import { getTodaysGames } from '../reducers/games.js';
-// import EnhStatsTable from '../components/tables/EnhStatsTable.js';
 
 function mapStateToProps(state) {
   return {
