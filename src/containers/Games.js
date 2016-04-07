@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { getTodaysGames } from '../reducers/games.js';
 
+import DonutChart from '../components/charts/donutChart.js';
+
 function mapStateToProps(state) {
   return {
     games: state.games.get('games')
@@ -36,6 +38,13 @@ const teamStyle = {
   marginRight: '2rem'
 };
 
+const graphStyle = {
+  flexGrow: '1',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+
 export class Games extends React.Component {
 
   componentDidMount() {
@@ -58,7 +67,9 @@ export class Games extends React.Component {
         + home.get('leagueRecord').get('ot');
 
       return (
-        <div style={wrapperStyle}>
+        <div key={game.get('gamePk')}
+            style={wrapperStyle}
+        >
           <div>{moment(game.get('gameDate')).format('h:mm A')}</div>
 
           <div style={teamWrapperStyle}>
@@ -70,7 +81,11 @@ export class Games extends React.Component {
               <div>{home.get('team').get('name')}</div>
               <div>{homeRecord}</div>
             </div>
-            <div>{'full width'}
+            <div style={graphStyle}>
+              <DonutChart height={300}
+                  radius={150}
+                  width={460}
+              />
             </div>
           </div>
         </div>
