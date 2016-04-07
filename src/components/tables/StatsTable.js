@@ -23,17 +23,19 @@ export default class StatsTable extends React.Component {
 
     return (
       <table>
-        <tr>
-          <td>{'Player'}</td>
-          <td>{'Team'}</td>
-          <td>{'Pos'}</td>
-          <td>{'GP'}</td>
-          <td>{'G'}</td>
-          <td>{'A'}</td>
-          <td>{'P'}</td>
-          <td>{'+/-'}</td>
-          <td>{'PIM'}</td>
-        </tr>
+        <thead>
+          <tr>
+            <td>{'Player'}</td>
+            <td>{'Team'}</td>
+            <td>{'Pos'}</td>
+            <td>{'GP'}</td>
+            <td>{'G'}</td>
+            <td>{'A'}</td>
+            <td>{'P'}</td>
+            <td>{'+/-'}</td>
+            <td>{'PIM'}</td>
+          </tr>
+        </thead>
         <tbody>
           {rows}
         </tbody>

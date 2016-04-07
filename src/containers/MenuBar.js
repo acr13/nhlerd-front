@@ -58,6 +58,7 @@ class MenuBar extends Component {
 
       return (
         <div className={selected}
+            key={r.label}
             onClick={() => {
               onRouteChange(r.route);
             }}
