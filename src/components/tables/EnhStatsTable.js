@@ -15,8 +15,12 @@ export default class StatsTable extends React.Component {
           <td>{player.get('shotAttemptsFor')}</td>
           <td>{player.get('shotAttemptsAgainst')}</td>
           <td>{player.get('shotAttempts')}</td>
-          <td>{player.get('shotAttemptsRelPctg') * 100}</td>
-          <td>{player.get('shotAttemptsRelPer60Minutes')}</td>
+          <td>{(parseFloat(player.get('shotAttemptsRelPctg')) * 100).toFixed(1)}</td>
+          <td>{player.get('shotAttemptsRelPer60Minutes').toFixed(1)}</td>
+          <td>{player.get('shotAttemptsTied')}</td>
+          <td>{player.get('shotAttemptsAhead')}</td>
+          <td>{player.get('shotAttemptsBehind')}</td>
+          <td>{player.get('shotAttemptsClose')}</td>
         </tr>
       );
     });
@@ -34,6 +38,10 @@ export default class StatsTable extends React.Component {
             <td>{'SAT'}</td>
             <td>{'SAT Rel%'}</td>
             <td>{'SAT Rel60'}</td>
+            <td>{'SAT Tied'}</td>
+            <td>{'SAT Ahead'}</td>
+            <td>{'SAT Behind'}</td>
+            <td>{'SAT Close'}</td>
           </tr>
         </thead>
         <tbody>
