@@ -17,6 +17,12 @@ export default class StatsTable extends React.Component {
           <td>{player.get('points')}</td>
           <td>{player.get('plusMinus')}</td>
           <td>{player.get('penaltyMinutes')}</td>
+          <td>{parseFloat(player.get('pointsPerGame')).toFixed(2)}</td>
+          <td>{player.get('shots')}</td>
+          <td>{(parseFloat(player.get('shootingPctg')) * 100).toFixed(1)}</td>
+          <td>{(parseFloat(player.get('timeOnIcePerGame')) / 60).toFixed(2)}</td>
+          <td>{parseFloat(player.get('shiftsPerGame')).toFixed(1)}</td>
+          <td>{(parseFloat(player.get('faceoffWinPctg')) * 100).toFixed(1)}</td>
         </tr>
       );
     });
@@ -34,6 +40,12 @@ export default class StatsTable extends React.Component {
             <td>{'P'}</td>
             <td>{'+/-'}</td>
             <td>{'PIM'}</td>
+            <td>{'P/GP'}</td>
+            <td>{'S'}</td>
+            <td>{'S%'}</td>
+            <td>{'TOI/GP'}</td>
+            <td>{'Shifts/GP'}</td>
+            <td>{'FOW%'}</td>
           </tr>
         </thead>
         <tbody>

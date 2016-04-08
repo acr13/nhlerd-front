@@ -26,6 +26,11 @@ const wrapperStyle = {
   marginTop: '2rem'
 };
 
+const cardStyle = {
+  display: 'flex',
+  justifyContent: 'center'
+};
+
 export class PlayerStats extends React.Component {
 
   componentDidMount() {
@@ -39,7 +44,9 @@ export class PlayerStats extends React.Component {
     return (
       <div style={wrapperStyle}>
 
-        <div className="card">
+        <div className="card"
+            style={cardStyle}
+        >
           <StatsTable stats={stats} />
         </div>
 
