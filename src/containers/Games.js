@@ -70,6 +70,8 @@ export class Games extends React.Component {
         <div key={game.get('gamePk')}
             style={wrapperStyle}
         >
+          <a href="asfhybrid://alexander123">{'ALEXANDER'}</a>
+
           <div>{moment(game.get('gameDate')).format('h:mm A')}</div>
 
           <div style={teamWrapperStyle}>
